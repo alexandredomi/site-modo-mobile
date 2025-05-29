@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModoMobile | Assistência Técnica Especializada</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            /* Cores */
+            --primary: #0092ca;
+            --primary-dark: #006d97;
+            --secondary: #335e46;
+            --accent: #00b7fd;
+            
+            /* Dark mode */
+            --bg-dark: #0a0a0a;
+            --card-dark: #1a1a1a;
+            --text-dark: #f0f0f0;
+            --border-dark: #333;
+            
+            /* Light mode */
+            --bg-light: #ffffff;
+            --card-light: #e9e9e9;
+            --text-light: #333333;
+            --border-light: #ddd;
+            
+            /* Elementos */
+            --radius: 16px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+        
+        body[data-theme="dark"] {
+            --bg: var(--bg-dark);
+            --card: var(--card-dark);
+            --text: var(--text-dark);
+            --border: var(--border-dark);
+        }
+        
+        body[data-theme="light"] {
+            --bg: var(--bg-light);
+            --card: var(--card-light);
+            --text: var(--text-light);
+            --border: var(--border-light);
+        }
+        
+        /* Layout Mobile-First */
+        .container {
+            width: 100%;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            background: var(--bg-dark);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+
+        .logo img{
+            margin-right: 10px;
+        }
+        
+        /* Menu hamburguer */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: var(--text);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+        
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--card);
+            flex-direction: column;
+            padding: 80px 30px 30px;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-links.active {
+            right: 0;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+            padding-left: 10px;
+        }
+        
+        /* Hero section */
+        .hero {
+            position: relative;
+            background: url('Gemini_Generated_Image_ab81duab81duab81.png') no-repeat center center;
+            background-size: cover;
+            padding: 150px 20px 80px 20px;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Aqui controla a escuridão */
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2; /* Joga o texto acima da camada escura */
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero .container h1{
+            font-size: 2.6rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .hero .container p{
+            font-size: 1rem;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary-dark);
+            border: none;
+            text-decoration: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #dbdbdb;
+        }
+        
+        /* Seção de serviços */
+        .services {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 15px;
+        }
+        
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .service-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+        
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        /* Nova seção: Vídeos de reparo */
+        .repair-videos {
+            padding: 60px 0;
+            background: var(--card);
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .video-card {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+        
+        .video-card iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-info {
+            padding: 15px;
+            background: var(--card);
+        }
+        
+        /* Nova seção: Acessórios */
+        .accessories {
+            padding: 60px 0;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .product-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 120px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-image img{
+            height: 120px;
+            width: 120px;
+        }
+        
+        .product-info {
+            height: 210px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px;
+        }
+        
+        .product-price {
+            color: var(--primary);
+            font-weight: 700;
+            margin: 5px 0;
+        }
+        
+        .buy-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 50px;
+            width: 100%;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .buy-button:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Nova seção: Avaliações */
+        .testimonials {
+            padding: 60px 0;
+            background: var(--card);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .testimonial-card {
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .testimonial-rating {
+            color: #ffc107;
+            margin: 5px 0;
+        }
+        
+        /* Seção de localização */
+        .location {
+            padding: 60px 0;
+        }
+        
+        .location .container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .map-container {
+            height: 300px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            order: 2;
+        }
+        
+        .address {
+            padding: 0;
+            order: 1;
+        }
+        
+        .address h2 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .address p {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .whatsapp-button {
+            background: #25D366;
+            color: white;
+            border: none;
+            text-decoration: none;
+            padding: 14px 24px;
+            font-size: 1rem;
+            border-radius: 50px;
+            margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .whatsapp-button:hover {
+            background: #1da850;
+        }
+        
+        /* Rodapé */
+        footer {
+            background: var(--card);
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--text);
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        
+        /* Toggle de tema */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Media Queries para tablets */
+        @media (min-width: 768px) {
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .service-grid, .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .location .container {
+                flex-direction: row;
+            }
+            
+            .map-container {
+                order: 1;
+            }
+            
+            .address {
+                order: 2;
+                padding: 0 0 0 30px;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Media Queries para desktop */
+        @media (min-width: 1024px) {
+            .menu-toggle {
+                display: none;
+            }
+            
+            .nav-links {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                flex-direction: row;
+                padding: 0;
+                box-shadow: none;
+                display: flex;
+                gap: 25px;
+            }
+            
+            .nav-links a {
+                padding: 0;
+                border-bottom: none;
+            }
+            
+            .nav-links a:hover {
+                padding-left: 0;
+            }
+            
+            .hero {
+                padding: 180px 0 100px;
+            }
+            
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .service-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="logo azul.png" alt="" width="30px">
+                    <span>ModoMobile</span>
+                </div>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="nav-links" id="navLinks">
+                    <a href="#services">Serviços</a>
+                    <a href="#videos">Vídeos</a>
+                    <a href="#accessories">Acessórios</a>
+                    <a href="#testimonials">Avaliações</a>
+                    <a href="#location">Localização</a>
+                    <a href="#contact">Contato</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero section -->
+    <section class="hero">
+    <div class="overlay"></div> <!-- Camada escura -->
+    <div class="container">
+        <h1>SEU CELULAR ESTÁ COM PROBLEMAS?</h1>
+        <p>Na Modo Mobile oferecemos soluções rápidas e garantidas com atendimento especializado.</p>
+        <a href="https://wa.me/5553991656605" class="cta-button">
+            <i class="fab fa-whatsapp"></i> CHAME NO WHATSAPP
+        </a>
+    </div>
+</section>
+
+
+    <!-- Seção de serviços -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Serviços</h2>
+                <p>Soluções completas para seu dispositivo com garantia e qualidade.</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Reparos Físicos</h3>
+                    <p>Troca de tela, bateria, conectores e outros componentes com peças de qualidade.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Reparo em Placa</h3>
+                    <p>Diagnóstico e reparo em nível microeletrônico com equipamentos profissionais.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3>Remoção de Vírus</h3>
+                    <p>Limpeza completa de malware e otimização do sistema para melhor desempenho.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Backup & Formatação</h3>
+                    <p>Recuperação de dados e reinstalação do sistema operacional com configuração.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nova seção: Vídeos de reparo -->
+    <section class="repair-videos" id="videos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Vídeos de Reparo</h2>
+                <p>Confira nosso trabalho em ação e aprenda sobre o processo de reparo.</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/EXAMPLOVIDEO1" title="Reparo de tela" allowfullscreen></iframe>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/EXAMPLOVIDEO2" title="Troca de bateria" allowfullscreen></iframe>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/EXAMPLOVIDEO3" title="Limpeza interna" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nova seção: Acessórios -->
+    <section class="accessories" id="accessories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Acessórios em Destaque</h2>
+                <p>Produtos de qualidade para complementar seu dispositivo.</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="fone bluetooth.webp" alt="">
+                    </div>
+                    <div class="product-info">
+                        <h3>Fones Bluetooth</h3>
+                        <p>Borcelle - 8h de bateria</p>
+                        <p class="product-price">R$ 120,00</p>
+                        <a href="https://wa.me/5553991656605" target="_blank" class="buy-button">comprar</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="img pelicula 3D.jpg" alt="">
+                    </div>
+                    <div class="product-info">
+                        <h3>Película 3D</h3>
+                        <p>Vidro temperado</p>
+                        <p class="product-price">R$ 35,00</p>
+                        <a href="https://wa.me/5553991656605" target="_blank" class="buy-button">comprar</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="smartwatch.jpeg" alt="">
+                    </div>
+                    <div class="product-info">
+                        <h3>Smartwatch</h3>
+                        <p>Tela HD, 8 modos</p>
+                        <p class="product-price">R$ 250,00</p>
+                        <a href="https://wa.me/5553991656605" target="_blank" class="buy-button">comprar</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="power bank.webp" alt="">
+                    </div>
+                    <div class="product-info">
+                        <h3>Power Bank</h3>
+                        <p>10.000mAh - 2 portas</p>
+                        <p class="product-price">R$ 90,00</p>
+                        <a href="https://wa.me/5553991656605" target="_blank" class="buy-button">comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nova seção: Avaliações -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Avaliações de Clientes</h2>
+                <p>Veja o que nossos clientes dizem sobre nosso trabalho.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">M</div>
+                        <div>
+                            <h3>Marcelo S.</h3>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Troquei a tela do meu iPhone e ficou perfeito! Atendimento rápido e preço justo. Recomendo!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">A</div>
+                        <div>
+                            <h3>Ana L.</h3>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Recuperaram todos os dados do meu celular que não ligava mais. Profissionais muito competentes!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">R</div>
+                        <div>
+                            <h3>Ricardo P.</h3>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Comprei um smartwatch e adorei! Entrega rápida e produto de qualidade. Voltarei mais vezes!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de localização -->
+    <section class="location" id="location">
+        <div class="container">
+            <div class="address">
+                <h2>NOSSA LOCALIZAÇÃO</h2>
+                <p><i class="fas fa-map-marker-alt"></i> Lobo da Costa, 1486 - Pelotas/RS</p>
+                <p><i class="fas fa-phone"></i> (53) 99165-6605</p>
+                <p><i class="fas fa-envelope"></i> modomobilematriz@gmail.com</p>
+                <p><i class="fas fa-globe"></i> www.modomobile.com</p>
+                <a href="https://wa.me/5553991656605" class="whatsapp-button">
+                    <i class="fab fa-whatsapp"></i> CHAMAR NO WHATSAPP
+                </a>
+            </div>
+            <div class="map-container">
+                <iframe src="https://maps.google.com/?q=Lobo+da+costa+-+1486+Pelotas+-+RS&output=embed" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Modo Mobile</h3>
+                    <p>Sua assistência técnica especializada em dispositivos móveis.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Horário</h3>
+                    <p><i class="far fa-clock"></i> Seg-Sex: 8:30h-18h</p>
+                    <p><i class="far fa-clock"></i> Sábado: 8:30h-15h</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-phone"></i> (53) 99165-6605</p>
+                    <p><i class="fas fa-envelope"></i> modomobilematriz@gmail.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/modomobile_/"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/5553991656605"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2024 Modo Mobile. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão flutuante do WhatsApp -->
+    <a href="https://wa.me/5553991656605" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Toggle de tema dark/light -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script>
+        // Menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+        
+        // Toggle de tema dark/light
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Atualizar ícone
+            if (newTheme === 'dark') {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+        
+        // Verificar preferência salva
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        body.setAttribute('data-theme', savedTheme);
+        
+        // Configurar ícone inicial
+        if (savedTheme === 'dark') {
+            themeIcon.classList.add('fa-moon');
+        } else {
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        // Botão flutuante do WhatsApp
+        const whatsappFloat = document.createElement('a');
+        whatsappFloat.href = 'https://wa.me/55539991656605';
+        whatsappFloat.className = 'whatsapp-float';
+        whatsappFloat.innerHTML = '<i class="fab fa-whatsapp"></i>';
+        document.body.appendChild(whatsappFloat);
+        
+        // Estilo para o botão do WhatsApp
+        const style = document.createElement('style');
+        style.textContent = `
+            .whatsapp-float {
+                position: fixed;
+                bottom: 80px;
+                right: 20px;
+                background-color: #25D366;
+                color: white;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                z-index: 998;
+                transition: var(--transition);
+            }
+            
+            .whatsapp-float:hover {
+                transform: scale(1.1);
+                background-color: #128C7E;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
